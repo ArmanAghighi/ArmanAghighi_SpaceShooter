@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class Laser : MonoBehaviour
 {
-    [SerializeField]
-    private float _speed = 8.0f;
+    [SerializeField] private float _speed = 8.0f;
     private bool _isEnemyLaser = false;
     private void Update()
     {
-        //Debug.Log("In Laser Update "+_isEnemyLaser);
         if (_isEnemyLaser == false)
         {
             MoveUp();
@@ -22,9 +20,8 @@ public class Laser : MonoBehaviour
     }
     void MoveUp()
     {
-        Debug.Log("Move Up");
         transform.Translate(Vector3.up * _speed * Time.deltaTime);
-        if (transform.position.y >= 8f)
+        if (transform.position.y > 8f)
         {
             if (transform.parent != null)
             {
@@ -35,7 +32,6 @@ public class Laser : MonoBehaviour
     }
     void MoveDown()
     {
-        Debug.Log("Move Down");
         transform.Translate(Vector3.down * _speed * Time.deltaTime);
         if (transform.position.y < -8f)
         {
@@ -46,10 +42,10 @@ public class Laser : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-    public void AssignEnemyLaser()
-    {
-        _isEnemyLaser = true;
-    }
+
+    public void AssignEnemyLaser() => _isEnemyLaser = true;
+    
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player" && _isEnemyLaser == true)
@@ -58,14 +54,6 @@ public class Laser : MonoBehaviour
             if (player != null)
             {
                 player.Damage(1);
-            }
-        }
-        else if (other.tag == "Player2" && _isEnemyLaser == true)
-        {
-            Player2 player2 = other.GetComponent<Player2>();
-            if (player2 != null)
-            {
-                player2.Damage(1);
             }
         }
     }

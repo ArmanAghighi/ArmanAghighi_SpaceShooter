@@ -44,29 +44,5 @@ public class Powerup : MonoBehaviour
             }
             Destroy(this.gameObject);
         }
-        else if (other.tag == "Player2")
-        {
-            Player2 player2 = other.transform.GetComponent<Player2>();
-            AudioSource.PlayClipAtPoint(_clip, transform.position);
-            if (player2 != null)
-            {
-
-                switch (powerupID)
-                {
-                    case 0:
-                        player2.TripleAShotActive();
-                        break;
-                    case 1:
-                        player2.SpeedBoostActive();
-                        break;
-                    case 2:
-                        player2.ShieldActive();
-                        break;
-                    default:
-                        break;
-                }
-            }
-            Destroy(this.gameObject);
-        }
     }
 }
