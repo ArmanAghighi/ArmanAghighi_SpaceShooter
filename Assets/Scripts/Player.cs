@@ -53,16 +53,10 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        HandleInput();
-    }
-
-    void HandleInput()
-    {
-#if (UNITY_ANDROID || UNITY_IOS) && !UNITY_EDITOR
-    HandleTouchInput();
-#else
-    HandleKeyboardInput();
-#endif
+        if (Input.touchCount > 0)
+            HandleTouchInput();
+        else
+            HandleKeyboardInput();
     }
 
     #region TOUCH
